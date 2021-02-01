@@ -1,7 +1,7 @@
 FROM continuumio/miniconda3
 
 COPY ./requirements.txt /app/requirements.txt
-RUN conda install -c conda-forge nvcc linux-64
-RUN pip install -r /app/requirements.txt
+COPY ./bot/bot.py /app/bot.py
+RUN pip3 install -r /app/requirements.txt
 
-CMD python bot.py
+CMD python /app/bot.py
