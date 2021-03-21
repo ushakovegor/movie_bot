@@ -13,12 +13,14 @@ def send_welcome(message):
 @bot.message_handler(content_types=['text'])
 def get_text_message(message):
     chat_id = message.chat.id
-    title = scripts.get_title(message.text)
-
-    bot.send_message(chat_id, 'Here it is: ' + title)
+    print(message.text)
+    title, title_id = scripts.get_title(message.text)
+    link = scripts.get_link(title_id)
+    bot.send_message(chat_id, 'Here it is: ' + title + '\n' + 'https://www.imdb.com/title/tt' + link)
 
 
 def main():
+    scripts.pre_actions()
     bot.polling(none_stop=True)
 
 
